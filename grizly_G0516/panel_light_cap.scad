@@ -5,7 +5,7 @@ $fn=360;
 
 difference(){
 	color("green"){
-		flat_cap();
+		cap();
 		shaft();
 	}
 	tube();
