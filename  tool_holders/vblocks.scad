@@ -23,10 +23,10 @@ difference()
 
 module impression()
 {
-	vblock(41);
-	translate([32+2,0,0]) vblock(41);
-	translate([64+10,8,0]) rotate([90,0,180]) clamp();
-	translate([64+10,-8,0]) rotate([90,0,180]) clamp();
+	translate([0,0,-1]) vblock(41);
+	translate([32+2,0,-1]) vblock(41);
+	translate([64+10,8,1]) rotate([90,0,180]) clamp();
+	translate([64+10,-8,1]) rotate([90,0,180]) clamp();
 }
 
 module vblock(height)
