@@ -8,12 +8,12 @@ middle_h=2;
 middle_d=19.6;
 middle_r=middle_d/2;
 top_base_h = 2;
-top_base_d = 25.5;
+top_base_d = 22.5;
 top_base_r = top_base_d/2;
 top_taper_h = 3;
 top_taper_d = 21;
 top_taper_r = top_taper_d/2;
-center_bore_d=13.5;
+center_bore_d=14;
 center_bore_r=13.5/2;
 total_h = bottom_h+
 					middle_h+
