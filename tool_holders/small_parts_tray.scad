@@ -38,7 +38,6 @@ module handle(back_length,thickness){
 	front_length=45;
 	width=10;
 
-	// TODO trapazoid
 	translate([(back_length-front_length)/2,-width+.75,-1.5])
 	{
 		translate([(front_length/2),width/2,0]) linear_extrude(thickness) trapezoid(width,front_length,back_length-1);
