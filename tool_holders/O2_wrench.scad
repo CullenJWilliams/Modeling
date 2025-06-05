@@ -13,8 +13,9 @@ render()
 difference()
 {
 	translate([-1,0,-1]) case(case_length+2, case_width, case_height);
+	translate([-5,case_width/2,1.7*case_height]) rotate([0,90,0])  cylinder(case_length+10,case_width/2,case_width/2);
 	color("teal") {
-		offset3d(.5)
+		offset3d(.2)
 		translate([25,0,26.75])
 		translate([42/2,42/2+1,0]) 
 		rotate([180,0,90])
@@ -78,7 +79,7 @@ module O2_Wrench_Socket()
 	l=c*sin(45);
 	h=8.4;
 
-	translate([0,-45.8+14.5,0]){
+	translate([0,-45.8+14.3,0]){
 		cube([l,l,l],anchor=CENTER+BOTTOM);
 		rotate([0,0,45]) cube([l,l,l],anchor=CENTER+BOTTOM);
 	}
