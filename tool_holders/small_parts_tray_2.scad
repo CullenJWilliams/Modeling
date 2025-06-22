@@ -5,15 +5,15 @@ include <./tapers.scad>
 $fn=360;
 
 length=140;
-height=36.3;
-width=54;
+height=59.5;
+width=67.6;
 thickness=1.3;
 
 otw = 39.5;
 
 box(length,width,height,thickness);
 translate([(width-otw)/2,length-thickness,height]) overTravelStop(otw,3.5,thickness);
-translate([(width/2)-(38.5/2),0,height/2]) handle_2(9, 38.5, 10, thickness);
+translate([(width/2)-(50/2),0,height/2]) handle_2(9, 50, 10, thickness);
 //rails();
 
 module box(length,width,height,thickness)
@@ -48,9 +48,10 @@ module handle(back_length,thickness){
 module handle_2(length, width,height,thickness){
 	difference(){
 		cuboid([width,length,height],anchor=BACK+LEFT,rounding=2,edges=[FRONT+LEFT,FRONT+RIGHT]);
+
 		translate([thickness,thickness,0]) handle_2_inner(length,width, height, thickness);
-		translate([19,-7.5,53]) rotate([90,0,0]) color("teal") cylinder(2,50,50);
-		mirror([0,0,1])translate([19,-7.5,53]) rotate([90,0,0]) color("teal") cylinder(2,50,50);
+		translate([19+6,-7.5,53]) rotate([90,0,0]) color("teal") cylinder(2,50,50);
+		mirror([0,0,1])translate([19+6,-7.5,53]) rotate([90,0,0]) color("teal") cylinder(2,50,50);
 	}
 	translate([thickness,thickness,0]) linear_extrude(thickness) projection([0,0,1]) handle_2_inner(length,width,height, thickness);
 }

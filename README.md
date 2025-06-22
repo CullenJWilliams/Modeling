@@ -1,4 +1,2 @@
-TODO:
-* Add liscenses and attribution to remixes
-* do thingiverse posts
-* 
+This is the home for all of my designs. Complete, incomplete, or useless, all of them.
+
