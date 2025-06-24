@@ -10,6 +10,14 @@ module morse_taper_5(t,tang=true) { morse_taper(1.7480,1.4750,1.5000,6.1250,4.62
 module morse_taper_6(t,tang=true) { morse_taper(2.4940,2.1160,1.7500,8.5625,6.8125, t, tang); }
 module morse_taper_7(t,tang=true) { morse_taper(3.2700,2.7500,2.6250,11.625,9.0000, t, tang); }
 
+///
+/// A = base diameter
+/// D = top diameter
+/// L = tang height
+/// B = overall height (not used)
+/// K = Height w/o tang
+/// t = tolerance
+/// tang = Whether to add a tang to this taper
 module morse_taper(A,D,L,B,K,t,tang=true)
 {
 	a=A*25.4;
@@ -29,8 +37,15 @@ module mmorse_taper(a,d,l,b,k,t,tang=true)
 		difference()
 		{
 			color("cyan") translate([0,0,-l]) cylinder(l,(d+t)/2,(d+t)/2);
-			translate([0,-d/3,-l/2]) cuboid([d+t,d/3,l+1],anchor=BACK);
-			translate([0,d/3,-l/2]) cuboid([d+t,d/3,l+1],anchor=FRONT);
+			translate([0,-d/6,-l/2-d/4]) cuboid([d+t,d,l+1],anchor=BACK);
+			translate([-d,-d/4-d/6,-d/4]) rotate([0,90,0]) cylinder(d*2,d/4,d/4);
+			translate([0,-d/4-d/6,0]) rotate([-90,0,0])cuboid([d+t,d,l+1],anchor=TOP+FRONT);
+
+			mirror([0,1,0]){
+				translate([0,-d/6,-l/2-d/4]) cuboid([d+t,d,l+1],anchor=BACK);
+				translate([-d,-d/4-d/6,-d/4]) rotate([0,90,0]) cylinder(d*2,d/4,d/4);
+				translate([0,-d/4-d/6,0]) rotate([-90,0,0])cuboid([d+t,d,l+1],anchor=TOP+FRONT);
+			}
 		}
 	}
 }
