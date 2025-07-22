@@ -1,12 +1,12 @@
 $fn=360;
 
 
-buffer_d=10;
-buffer_h=5;
-shaft_d=2;
-shaft_h=1;
-spear_d=4;
-spear_h=3;
+buffer_d=6;
+buffer_h=2.8;
+shaft_d=1.6;
+shaft_h=.6;
+spear_d=3.9;
+spear_h=1.8;
 
 
 buffer_r=buffer_d/2;
