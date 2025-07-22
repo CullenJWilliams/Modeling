@@ -1,8 +1,10 @@
 $fn=360;
 
+column_diameter=65;
+
 render(){
-	base(45);
-	column(10,40);
+	base(68/2);
+	column(10,column_diameter/2);
 }
 
 module base(r){
@@ -21,11 +23,11 @@ module column(h,r)
 {
 	difference(){
 		color("teal"){
-			translate([0,0,h-3]) cylinder(3,r+1,r);
+			translate([0,0,h-3]) cylinder(3,r+2,r);
 			cylinder(h,r,r);
 		}
-		cylinder(h,r-2,r-2);
-		cuts(h+2,r+2);
+		cylinder(h,r-3,r-1);
+		cuts(h+4,r+4);
 	}
 }
 
