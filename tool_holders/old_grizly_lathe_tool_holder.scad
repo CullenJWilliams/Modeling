@@ -12,7 +12,7 @@ module tray()
 	render()
 		difference()
 		{
-			translate([18,35,-1]) case(42, 131, 10);
+			translate([-8,-(131-68)/2,-1]) case(42+5, 131, 10);
 			render()
 				color("teal") {
 					linear_extrude(20)
@@ -29,11 +29,15 @@ module tray()
 								[0,68],
 						]);
 				}
+				color("coral"){
+				translate([-10,0,7])cube([10,68,10]);
+
+				}
 		}
 }
 
 module case(length, width, height)
 {
-	translate([0,0,height]) prismoid(size1=[length,width], size2=[length-2,width-2], h=2);
-	cube([length,width,height],anchor=CENTER+BOTTOM);
+	translate([0,0,height]) prismoid(size1=[length,width], size2=[length-2,width-2], h=2, anchor=LEFT+FRONT+BOTTOM);
+	cube([length,width,height]);
 }
