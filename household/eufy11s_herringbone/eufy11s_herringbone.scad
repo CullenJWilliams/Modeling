@@ -22,13 +22,14 @@ module shaft()
 		color("coral"){
 			cylinder(8.20,4.25,4.25);
 			cube([6,6,15], anchor=BOTTOM);
+			translate([0,3,11.5]) rotate([90,0,0]) cylinder(6,3.5,3.5);
 		}
 		color("green"){
 			translate([0,-3,8]) cube([2,.8,7], anchor=BOTTOM+FRONT);
 			translate([0,3,8]) cube([2,.8,7], anchor=BOTTOM+BACK);
 
-			translate([3,0,5]) cube([.8,4.1,10], anchor=BOTTOM+RIGHT);
-			translate([-3,0,5]) cube([.8,4.1,10], anchor=BOTTOM+LEFT);
+			//translate([3,0,5]) cube([.8,4.1,10], anchor=BOTTOM+RIGHT);
+			//translate([-3,0,5]) cube([.8,4.1,10], anchor=BOTTOM+LEFT);
 		}
 	}
 }
