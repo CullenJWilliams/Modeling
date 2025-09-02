@@ -1,4 +1,4 @@
-include <../../BOSL2/std.scad>
+include <BOSL2/std.scad>
 $fn=5;
 
 inch = 25.4;
@@ -32,7 +32,6 @@ path = [
 	[side_length+side1_x+side1_y,side1_y+side1_x],
 	[side_length+side1_x+side1_y,side_length+side1_x+side1_y]
 ];
-stroke(path);
 zpath = [
 	[0,0],
 	[0,side_width],
