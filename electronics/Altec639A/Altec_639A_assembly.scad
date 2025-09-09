@@ -9,7 +9,7 @@ grill_gap=.19;
 
 base_ring();
 //crown();
-//cross_support();
+cross_support();
 
 module base_ring()
 {
@@ -20,11 +20,9 @@ module base_ring()
 		[-.078*inch,0],
 		[0,0]
 	];
-		//stroke(profile);
-		base_profile = circle(43);
-		path_sweep(profile,base_profile);
-
-
+	//stroke(profile);
+	base_profile = circle(43);
+	path_sweep(profile,base_profile);
 }
 
 module crown()
@@ -73,11 +71,11 @@ module cross_support()
 {
 	crossbar();
 	render()
-	difference()
-	{
-		screw_bosses();
-		screw_holes();
-	}
+		difference()
+		{
+			screw_bosses();
+			screw_holes();
+		}
 }
 
 module crossbar()
