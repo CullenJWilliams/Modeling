@@ -1,4 +1,6 @@
 include <BOSL2/std.scad>
+include <./AltecProfiles.scad>
+
 $fn=360;
 
 inch = 25.4;
@@ -8,7 +10,7 @@ thickness=2.8;
 grill_gap=.19;
 
 base_ring();
-//crown();
+crown();
 cross_support();
 
 module base_ring()
@@ -20,9 +22,31 @@ module base_ring()
 		[-.078*inch,0],
 		[0,0]
 	];
+	stroke(egg2(43, 41.85));
 	//stroke(profile);
-	base_profile = circle(43);
-	path_sweep(profile,base_profile);
+	base_profile = egg2(43,41.85);
+
+	H = [0, 41.85];
+	O = [-43, 0];
+
+	D_0 = normalize(H - O);
+	D = O + 2 * 43 * D_0;
+	theta = atan2(D_0[1], D_0[0]);
+
+	bottom = arc(r = 43, angle=[180, 360],$fn=360);
+	top = [ for (i = arc(r = norm(H - D), angle=[theta, 90 + theta],$fn=100)) i + H ];
+
+        right = [ for (i = arc(r = 2*43, angle=[0, theta]),$fn=100) i + [-43, 0] ];
+        left = [ for (i = arc(r = 2*43, angle=[90+theta, 180]),$fn=100) i + [43, 0] ];
+
+	stroke(base_profile);
+path = [[0,0],[0,10],[10,10],[0,0]];
+	stroke(path);
+
+	path_sweep(profile,bottom);
+	path_sweep(profile,left);
+	path_sweep(profile,right);
+	path_sweep(profile,top);
 }
 
 module crown()
@@ -30,17 +54,32 @@ module crown()
 	difference()
 	{
 		exterior_crown();
-		interior_crown();
-		slices();
+		//interior_crown();
+		rotate([0,0,90]) slices();
 	}
 }
 
 module exterior_crown()
 {
-	difference()
+	echo("here");
 	{
-		sphere(43);
-		cuboid([100,100,100],anchor=TOP+CENTER);
+	H = [0, 41.85];
+	O = [-43, 0];
+
+	D_0 = normalize(H - O);
+	D = O + 2 * 43 * D_0;
+	theta = atan2(D_0[1], D_0[0]);
+
+	bottom = arc(r = 43, angle=[180, 360],$fn=360);
+	top = [ for (i = arc(r = norm(H - D), angle=[theta, 90 + theta],$fn=100)) i + H ];
+
+        right = [ for (i = arc(r = 2*43, angle=[0, theta]),$fn=100) i + [-43, 0] ];
+        left = [ for (i = arc(r = 2*43, angle=[90+theta, 180]),$fn=100) i + [43, 0] ];
+
+	path_sweep([[0,0],[0,10],[10,20],[20,25],[25,26],[30,27],[40,28]],right);
+	path_sweep([[0,0],[0,10],[10,20],[20,25],[25,26],[30,27],[40,28]],top);
+	path_sweep([[0,0],[0,10],[10,20],[20,25],[25,26],[30,27],[40,28]],bottom);
+	path_sweep([[0,0],[0,10],[10,20],[20,25],[25,26],[30,27],[40,28]],left);
 	}
 }
 
@@ -63,7 +102,7 @@ module ySlices()
 {
 	for(i=[0:1:4]){
 		translate([0,(.123/2+i*(.2+.123))*inch,0])
-			cuboid([100,grill_gap*inch,50],anchor=BOTTOM+FRONT);
+			cuboid([200,grill_gap*inch,50],anchor=BOTTOM+FRONT);
 	}
 }
 
@@ -87,8 +126,8 @@ module screw_bosses()
 	interdistance = (.774+grill_gap)*inch;
 	height = (1.42-.2)*inch;
 
-	translate([0,(interdistance/2),height]) cylinder(.2*inch,.15*inch,.15*inch);
-	translate([0,-(interdistance/2),height]) cylinder(.2*inch,.15*inch,.15*inch);
+	translate([(interdistance/2),0,height]) cylinder(.2*inch,.15*inch,.15*inch);
+	translate([-(interdistance/2),0,height]) cylinder(.2*inch,.15*inch,.15*inch);
 }
 
 module screw_holes()
@@ -96,8 +135,8 @@ module screw_holes()
 	interdistance = (.774+grill_gap)*inch;
 	height = (1.42-.2)*inch;
 
-	translate([0,(interdistance/2),height]) cylinder(.3*inch,(.148/2)*inch,(.148/2)*inch);
-	translate([0,-(interdistance/2),height]) cylinder(.3*inch,(.148/2)*inch,(.148/2)*inch);
-	translate([0,(interdistance/2),height]) cylinder(.3*inch,(grill_gap/2)*inch,(grill_gap/2)*inch);
-	translate([0,-(interdistance/2),height]) cylinder(.3*inch,(grill_gap/2)*inch,(grill_gap/2)*inch);
+	translate([(interdistance/2),0,height]) cylinder(.3*inch,(.148/2)*inch,(.148/2)*inch);
+	translate([-(interdistance/2),0,height]) cylinder(.3*inch,(.148/2)*inch,(.148/2)*inch);
+	translate([(interdistance/2) ,0,height]) cylinder(.3*inch,(grill_gap/2)*inch,(grill_gap/2)*inch);
+	translate([-(interdistance/2),0,height]) cylinder(.3*inch,(grill_gap/2)*inch,(grill_gap/2)*inch);
 }
