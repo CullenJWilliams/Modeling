@@ -6,16 +6,13 @@ inch = 25.4;
 thickness=2.8;
 
 base_ring();
-crown();
-cross_support();
+//crown();
+//cross_support();
+//path = egg2(43, 41.85);
+//stroke(closed = false, path);
 
 module base_ring()
 {
-	// TODO prototype
-	difference(){
-		circle(43+thickness);
-		circle(43);
-	}
 	// ACTUAL
 	profile=[
 		[0,0],
@@ -24,12 +21,30 @@ module base_ring()
 		[.078*inch,0],
 		[0,0]
 	];
-		stroke(profile);
-		// TODO sweep path along base profile
-		// path_sweep(profile,base_profile);
-
-
+    // stroke(profile);
+    // TODO sweep path along base profile
+    eggShape = egg2(43, 41.85);
+    echo(eggShape);
+    //path_sweep(profile, egg2(43, 41.85));
 }
+
+function egg2(r, h) =
+    let(
+        H = [0, h],
+        O = [-r, 0],
+
+        D_0 = normalize(H - O),
+        D = O + 2 * r * D_0,
+        
+        theta = atan2(D_0[1], D_0[0]),
+        
+        right = [ for (i = arc(r = 2*r, angle=[0, theta])) i + [-r, 0] ],
+        left = [ for (i = arc(r = 2*r, angle=[90+theta, 180])) i + [r, 0] ],
+        top = [ for (i = arc(r = norm(H - D), angle=[theta, 90 + theta])) i + H ],
+        bottom = arc(r = r, angle=[180, 360]),
+        path = concat(bottom, right, top, left)
+    )
+    [for (i = path) [i[0], i[1], 0]];
 
 module crown()
 {
@@ -94,3 +109,5 @@ module screw_bosses()
 module screw_holes()
 {
 }
+
+function normalize(v) = v / norm(v);
