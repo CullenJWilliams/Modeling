@@ -4,8 +4,8 @@ $fn=360;
 
 twou=89;
 length= 155;
-width= 111;
-height= 66;
+width= 111+4;
+height= 66+4;
 thickness=2;
 
 render(){
@@ -15,7 +15,7 @@ render(){
 
 module top_box(h)
 {
-	r=8;
+	r=7;
 	color("coral")
 	difference(){
 		cuboid([width,h,length],anchor=FRONT+RIGHT+BOTTOM);
