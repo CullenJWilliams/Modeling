@@ -9,10 +9,13 @@ thickness=2.8;
 
 grill_gap=.19;
 
+	//stroke(profile);
+
+render()
 difference(){
-	base_ring(42.5);
-	rotate([90,0,30]) cylinder(50,1.5,1.5);
-	rotate([90,0,-30]) cylinder(50,1.5,1.5);
+	base_ring(43.4);
+	rotate([90,0,33]) cylinder(50,1.5,1.5);
+	rotate([90,0,-33]) cylinder(50,1.5,1.5);
 }
 //crown();
 //cross_support();
@@ -22,8 +25,8 @@ module base_ring(r)
 	profile=[
 		[0,0],
 		[0,.13*inch],
-		[-.114*inch,.13*inch],
-		[-.078*inch,0],
+		[.114*inch,.13*inch],
+		[.078*inch,0],
 		[0,0]
 	];
 
@@ -38,7 +41,7 @@ module base_ring(r)
 	top = [ for (i = arc(r = norm(H - D), angle=[theta, 90 + theta],$fn=100)) i + H ];
 
 	right = [ for (i = arc(r = 2*r, angle=[0, theta]),$fn=100) i + [-r, 0] ];
-	left = [ for (i = arc(r = 2*r, angle=[90+theta, 180]),$fn=100) i + [r, 0] ];
+	left = [ for (i = arc(r = 2*r, angle=[90+theta-1, 180]),$fn=100) i + [r, 0] ];
 
 	//stroke(bottom);
 	//stroke(left);
