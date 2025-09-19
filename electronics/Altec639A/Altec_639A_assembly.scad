@@ -13,7 +13,7 @@ grill_gap=.19;
 render(){
 	base_ring_with_cutouts();
 	crown(43.4,41.85);
-	cross_support();
+	translate([0,8,0]) cross_support();
 	}
 
 module base_ring_with_cutouts()
@@ -157,8 +157,8 @@ module ySlices()
 
 module cross_support()
 {
-	crossbar();
-	render()
+	translate([0,0,2]) crossbar();
+	translate([0,0,-1]) render()
 		difference()
 		{
 			screw_bosses();
@@ -170,8 +170,8 @@ module crossbar()
 {
 	difference()
 	{
-		interior_crown(43.4,41.85);
-		scale([1.25,1,1]) sphere(30);
+		scale([1.03,1,.99]) interior_crown(43.4,41.85);
+		scale([1.35,1,1]) sphere(30);
 		translate([0,-3,0]) cuboid([100,100,100],anchor=FRONT);
 		translate([0,-5,0]) cuboid([100,100,100],anchor=BACK);
 	}
