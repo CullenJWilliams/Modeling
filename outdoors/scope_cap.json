@@ -1,0 +1,12 @@
+{
+    "fileFormatVersion": "1",
+    "parameterSets": {
+        "New set 1": {
+            "$fn": "360",
+            "height": "28",
+            "inch": "25.399999999999999",
+            "inner_diameter": "32",
+            "thickness": "2"
+        }
+    }
+}
