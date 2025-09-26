@@ -9,7 +9,7 @@ render()
 difference(){
 	render()
 	{
-		spur_gear(1.48,46,4.2,helical=20, herringbone=true, anchor=BOTTOM);
+		spur_gear(1.57,46,4.2,helical=0, herringbone=false, anchor=BOTTOM);
 		shaft();
 	}
 	color("purple") axle();
