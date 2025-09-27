@@ -1,24 +1,31 @@
+include <pegmixer-main/pegmixer.scad>
 include <BOSL2/std.scad>
 
 $fn=360;
 
-feet();
+pegmixer() virtual([55,5,9]);
+
 difference(){
-	hull()
-	{
-		difference(){
-			color("teal"){
-				backing_plate();
-				translate([-43,-21.5,-1.8]) rotate([0,-20,0]) holder();
-				translate([-30.5,-21.5,0]) holder();
+	hull(){
+		backing_plate();
+		translate([-21.5,15,0])
+			rotate([0,0,90])
+			difference()
+			{
+				color("teal"){
+					translate([-43,-21.5,-1.8]) rotate([0,-20,0]) holder();
+					translate([-30.5,-21.5,0]) holder();
+				}
+				translate([-100,-100,-10]) cube([100,100,10]);
 			}
-			translate([-100,-100,-10]) cube([100,100,10]);
+	}
+
+	translate([-21.5,15,0])
+		rotate([0,0,90])
+		color("teal"){
+			translate([-43,-21.5,-1.8]) rotate([0,-20,0]) holder_hole();
+			translate([-30.5,-21.5,0]) holder_hole();
 		}
-	}
-	color("teal"){
-		translate([-43,-21.5,-1.8]) rotate([0,-20,0]) holder_hole();
-		translate([-30.5,-21.5,0]) holder_hole();
-	}
 }
 
 module holder()
@@ -36,7 +43,7 @@ module holder_hole()
 module backing_plate()
 {
 	color("teal")
-		translate([-19,-27-8,0]) cube([4,27,29]);
+		cuboid([32,5,30],anchor=CENTER+BOTTOM);
 }
 
 module feet()
