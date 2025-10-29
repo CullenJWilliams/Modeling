@@ -1,0 +1,77 @@
+include <BOSL2/std.scad>
+include <BOSL2/screws.scad>
+
+$fn=360;
+
+shaft_h = 60;
+shaft_d = 30;
+shaft_r = shaft_d/2;
+shaft_thickness=4;
+
+ball_d = 40;
+ball_r = ball_d/2;
+screw_d = 4; // 1/4-20 diameter + tolerance
+screw_r = screw_d/2;
+screw_l = 30;
+
+nut_d = 10+.2; // point-to-point+tolerance
+nut_r = nut_d/2;
+
+
+translate([50,0,0]) ball_top();
+render()
+	difference(){
+		color("teal")
+		{
+			translate([0,0,shaft_h]) ball_base();
+			shaft();
+		}
+		shaft_negative();
+	}
+
+
+module ball_half()
+{
+	difference()
+	{
+		sphere(ball_r);
+		cube([ball_d,ball_d,ball_d],anchor=CENTER+BOTTOM);
+	}
+}
+
+module ball_base()
+{
+	render()
+		difference()
+		{
+			ball_half();
+			cylinder(200,screw_r,screw_r,anchor=CENTER);
+			color("coral") cylinder(6,nut_r,nut_r,anchor=TOP,$fn=6);
+		}
+}
+
+module ball_top()
+{
+	difference(){
+		ball_half();
+		screw_hole("1/4-20,.25",anchor=TOP,thread=true,bevel1="reverse");
+	}
+}
+
+module shaft(){
+	cylinder(shaft_h-(2*(shaft_r/3)),shaft_r,shaft_r);
+}
+module shaft_negative()
+{
+	render()
+	{
+		difference(){
+			translate([0,0,-(2*(shaft_r/3))]) cylinder(shaft_h,shaft_r+5,shaft_r+5);
+			shaft();
+		}
+		translate([0,0,-screw_l])
+			cylinder(shaft_h,shaft_r-shaft_thickness,shaft_r-shaft_thickness);
+		cylinder(200,screw_r,screw_r,anchor=CENTER);
+	}
+	// TODO detent
+}
