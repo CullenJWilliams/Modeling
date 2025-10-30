@@ -17,8 +17,8 @@ screw_l = 30;
 nut_d = 10+.2; // point-to-point+tolerance
 nut_r = nut_d/2;
 
-
-translate([50,0,0]) ball_top();
+rotate([180,0,0]) translate([50,0,0]) ball_top();
+color("yellow")
 render()
 	difference(){
 		color("teal")
@@ -60,7 +60,9 @@ module ball_top()
 
 module shaft(){
 	cylinder(shaft_h-(2*(shaft_r/3)),shaft_r,shaft_r);
+	detent_button(3,0);
 }
+
 module shaft_negative()
 {
 	render()
@@ -72,6 +74,20 @@ module shaft_negative()
 		translate([0,0,-screw_l])
 			cylinder(shaft_h,shaft_r-shaft_thickness,shaft_r-shaft_thickness);
 		cylinder(200,screw_r,screw_r,anchor=CENTER);
+		difference(){
+			detent_button(3,1);
+			detent_button(3,0);
+		}
 	}
-	// TODO detent
+}
+
+module detent_button(r,gap)
+{
+	translate([0,0,10+r]) rotate([0,90,0]) cylinder(shaft_r,r+gap,r+gap);
+	translate([shaft_r,0,10+r]) rotate([0,90,0]) sphere(r+gap);
+
+intersection(){
+	translate([shaft_r,0,10]) cuboid([5+gap,4+gap,10],anchor=RIGHT);
+	cylinder(shaft_h-(2*(shaft_r/3)),shaft_r,shaft_r);
+	}
 }
