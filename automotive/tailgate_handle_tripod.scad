@@ -8,10 +8,10 @@ shaft_d = 26;
 shaft_thickness=3;
 
 ball_d = 51.5;
-screw_d = 4; // 1/4-20 diameter + tolerance
+screw_d = 6+1; // 1/4-20 diameter + tolerance
 screw_l = 30;
 
-nut_d = 10+.2; // point-to-point+tolerance
+nut_d = 12.4+.2; // point-to-point+tolerance
 
 shaft_r = shaft_d/2;
 ball_r = ball_d/2;
@@ -24,7 +24,7 @@ render()
 	difference(){
 		color("teal")
 		{
-			translate([0,0,shaft_h]) ball_base();
+			translate([0,0,shaft_h+(5*ball_r/6)]) ball_base();
 			shaft();
 		}
 		shaft_negative();
@@ -60,14 +60,14 @@ module ball_top()
 }
 
 module shaft(){
-	cylinder(shaft_h-(2*(shaft_r/3)),shaft_r,shaft_r);
+	cylinder(shaft_h,shaft_r,shaft_r);
 	detent_button(7.5/2,0);
 }
 
 module shaft_negative()
 {
 		difference(){
-			translate([0,0,-shaft_r-6]) cylinder(shaft_h,shaft_r+5,shaft_r+5);
+			translate([0,0,-shaft_r+13]) cylinder(shaft_h,shaft_r+5,shaft_r+5);
 			shaft();
 		}
 		translate([0,0,-screw_l])
@@ -81,8 +81,8 @@ module shaft_negative()
 
 module detent_button(r,gap)
 {
-	translate([0,0,16+r]) rotate([0,90,0]) cylinder(shaft_r,r+gap,r+gap);
-	translate([shaft_r,0,16+r]) rotate([0,90,0]) sphere(r+gap);
+	translate([0,0,20]) rotate([0,90,0]) cylinder(shaft_r,r+gap,r+gap);
+	translate([shaft_r,0,20]) rotate([0,90,0]) sphere(r+gap);
 
 intersection(){
 	translate([shaft_r,0,10]) cuboid([5+gap,4+gap,16],anchor=RIGHT);
