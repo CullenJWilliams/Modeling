@@ -53,9 +53,9 @@ module blank(){
 				}
 			color("coral")
 			{
-				translate([2,13,0]) cuboid([46,50,thickness],anchor=RIGHT+BOTTOM+FRONT);
-				translate([-45.3,13,0]) cylinder(thickness,18.2,18.2,anchor=FRONT+BOTTOM);
-				translate([-69.5,37.8-14,0])
+				#translate([2,13,0]) cuboid([45.8+2,50,thickness],anchor=RIGHT+BOTTOM+FRONT);
+				#translate([-45.8,13,0]) cylinder(thickness,11/16*inch,11/16*inch,anchor=FRONT+BOTTOM);
+				translate([-68.6,37.8-12.6,0])
 					top_radius();
 			}
 		}
@@ -65,8 +65,8 @@ module blank(){
 module top_radius()
 {
 	difference(){
-		cuboid([10,10,thickness],anchor=LEFT+FRONT+BOTTOM);
-		translate([-1,-4,0]) rotate([0,0,-45]) cuboid([10,10,thickness],anchor=LEFT+FRONT+BOTTOM);
-		cylinder(2*thickness,7,7);
+		cuboid([20,20,thickness],anchor=LEFT+FRONT+BOTTOM);
+		translate([-1,-6,0]) rotate([0,0,-45]) cuboid([10,10,thickness],anchor=LEFT+FRONT+BOTTOM);
+		cylinder(2*thickness,6,6);
 	}
 }

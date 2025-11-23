@@ -16,6 +16,7 @@ module sear()
 module sear_profile()
 {
 	cuboid([10,10,5]);
+	circle((5/16)*inch); // front cut
 }
 
 module pivot_hole()
