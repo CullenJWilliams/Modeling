@@ -7,18 +7,18 @@ $fn=360;
 height=100;
 thickness=2;
 ps_height=57;
-depth=90+2*thickness;
+depth=90+2*thickness+5;
 width=120+2*thickness;
 
 
 render()
 {
-	translate([width/2,depth/2,height]) rotate([0,0,-90]) clip(ps_height,thickness);
+	translate([(width/2)+11,depth/2,height]) rotate([0,0,-90]) clip(ps_height,thickness);
 	translate([width/2,0,height]) top(5,width,depth,thickness);
 	difference()
 	{
 		base(height,width,depth);
-		translate([10,0,3*height/4]) pedal_slot(10,70,depth);
+		translate([10,0,3*height/4]) pedal_slot(12,70,depth);
 		magnet_holes(6,3);
 		color("coral") translate([0,0,height])  feet_holes(10,6,width-2*thickness,depth-2*thickness);
 	}
