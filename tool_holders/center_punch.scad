@@ -8,7 +8,7 @@ case_width = 30;
 case_height = 15;
 
 
-render()
+//render()
 difference()
 {
 	translate([-2,0,0]) case(case_length+2, case_width, case_height);

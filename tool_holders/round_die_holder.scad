@@ -1,18 +1,18 @@
 include <BOSL2/std.scad>
 
-$fn=360;
-
 height = 10/2;
-diameter = 47+.5;
+diameter = 49+.5;
+$fn=6;
+
 radius=diameter/2;
-width = (diameter+1>29)?diameter+1:29;
+width = (diameter+1>29) ? diameter+1:29;
 
 render()
 {
 	difference(){
 		//translate([0,0,-2]) cylinder(height+2,radius+1,radius+.5);
 		translate([0,0,-2]) cube([width,diameter+1,height+1.9],anchor=CENTER+BOTTOM);
-		cylinder(height,radius,radius,$fn=6);
+		cylinder(height,radius,radius);
 	}
 }
 //translate([0,-radius,-2]) cube([width,13,2],anchor=CENTER+BACK+BOTTOM);
