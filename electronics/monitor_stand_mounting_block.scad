@@ -19,7 +19,7 @@ difference(){
 	translate([0,height-r-10,0]) clamp_cut();
 }
 
-					translate([-40,0,0]) screw("M16,20",anchor=TOP,thread=true,bevel1=true,head="socket ribbed");
+translate([0,-80,-height/2]) rotate([180,0,0]) screw("M16,20",anchor=TOP,thread=true,bevel1=true,head="socket ribbed");
 
 module clamp_cut(){
 	clamp_diameter=20;
