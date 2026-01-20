@@ -23,9 +23,7 @@ module holes()
 		mic_h=3;
 
 		cylinder(mic_h,mic_r,mic_r);
-
 		translate([0,-mic_r-1,0])rotate([90,0,0]) cylinder(10,bar_r,bar_r);
-		translate([0,-mic_r+1,0])rotate([90,0,0]) cuboid([bar_r,10,12],anchor=BOTTOM+FRONT);
 		translate([0,-mic_r+4,0]) rotate([90,0,0]) cylinder(5,0,bar_r-.3);
 
 	}
