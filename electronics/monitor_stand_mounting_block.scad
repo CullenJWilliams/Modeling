@@ -3,13 +3,14 @@ include<BOSL2/screws.scad>
 $fn=360;
 inch = 25.4;
 
-length=90;
+length=110;
 width=45;
 height=30;
-d = 36;
+d = 35.5;
 r=d/2;
 
 difference(){
+	translate([0,10,0]) 
 	diff()
 		cuboid([width,length,height])
 			attach(FRONT)
@@ -19,7 +20,7 @@ difference(){
 	translate([0,height-r-10,0]) clamp_cut();
 }
 
-translate([0,-80,-height/2]) rotate([180,0,0]) screw("M16,20",anchor=TOP,thread=true,bevel1=true,head="socket ribbed");
+translate([0,-80,-height/2]) rotate([180,0,0]) screw("M16,24",anchor=TOP,thread=true,bevel1=true,head="socket ribbed");
 
 module clamp_cut(){
 	clamp_diameter=20;
@@ -29,6 +30,3 @@ module clamp_cut(){
 		rotate([90,0,0]) cylinder(height,clamp_r,clamp_r);
 	}
 }
-
-// TODO make a screw
-
