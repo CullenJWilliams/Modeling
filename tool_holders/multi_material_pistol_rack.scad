@@ -2,43 +2,26 @@ include <BOSL2/std.scad>
 include <BOSL2/joiners.scad>
 
 $fn=360;
+inch = 25.4;
 
-case_length = 145+4;
-case_width = 4+(20+14);
-case_height = 10/2;
-
+length = 17.75*inch ;
+width = 1*inch;
+height = .5*inch;
 
 render()
 difference()
 {
-	translate([-2,0,-2]) case(case_length, case_width, case_height);
-	color("teal") {
-		translate([145/2,2+(20+14)/2,0]) die_wrench();
-	}
-}
-
-module case(length, width, height)
-{
 	cube([length,width,height]);
-}
+	for(i=[1.6*inch:1.6*inch:length-(1.6*inch)])
+	{
+		translate([i,0,2]) 
+		#cube([(1/8)*inch+.5,80,80],anchor=CENTER+BOTTOM);
+	}
 
-module die_wrench()
-{
-	d=22.3+.5;
-	r=d/2;
-	h=8.5;
+	path=[[0,0],[10,width/3],[10,2*width/3],[0,width]];
 
-	pin_l = 10;
-	pin_r = 4/2;
-
-	rod_d = 6.5;
-	rod_r=rod_d/2;
-	rod_l = 145;
-
-	t=.5;
-
-	cylinder(h,r+t,r+t);
-	translate([0,0,h/2]) rotate([0,90,0]) cylinder(rod_l+(2*t),rod_r+t,rod_r+t,anchor=CENTER);
-	translate([0,0,h/2]) rotate([90,0,45]) cylinder((pin_l*2)+d+(2*t),pin_r+t,pin_r+t,anchor=CENTER);
+	translate([(17.75*inch)/2-13,0,0]) 
+	linear_extrude(height)
+	#stroke(path);
 
 }
