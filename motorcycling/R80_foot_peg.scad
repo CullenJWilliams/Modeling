@@ -2,7 +2,7 @@ include <BOSL2/std.scad>
 
 $fn=360;
 
-translate([-5,22,50]) 
+translate([-5,18,50]) 
 rotate([0,-90,-90])
 linear_extrude(2)
 text("CJW");
@@ -15,16 +15,16 @@ difference()
 		translate([0,0,10]) rib(5.5);
 		translate([0,0,17.5]) rib(4);
 		translate([0,0,23]) rib(4);
-		translate([0,0,101]) rib(4);
-		translate([0,0,107]) rib(4);
-		translate([0,0,113]) rib(10);
+		translate([0,0,102]) rib(4);
+		translate([0,0,108]) rib(4);
+		translate([0,0,114]) rib(9);
 		center_ribs();
 	}
 	center_post();
 	translate([0,0,130])
 	rotate([45,0,0]) cuboid([100,100,20]);
 
-	translate([0,22.2,47.5]) 
+	translate([0,18.2,47.5]) 
 	rotate([0,-90,-90])
 	cuboid([35,20,10],anchor=BOTTOM+LEFT,rounding=2);
 }
@@ -80,33 +80,33 @@ module center_post()
 module body_core()
 {
 	path = turtle([
-			"move", -25.7,
+			"move", -20.9,
 			"left", 85,
-			"move", 14,
+			"move", 10,
 			"arcright", 9, 85,
-			"move", 30,
+			"move", 22,
 			"arcright", 9, 85,
-			"move", 14,
+			"move", 10,
 			"arcright", 3, 65,
-			"move", 21.59,
+			"move", 16.55,
 			"arcright", 10, 60,
-			"move", 21.59,
+			"move", 16.55,
 			"arcright", 3, 65,
 	]);
 	linear_extrude(123) polygon(path);
-	//stroke(path);
+//	stroke(path);
 }
 
 module rib(h)
 {
 	path = turtle([
-			"move", -25.7-2.5,
+			"move", -20.9-2.5,
 			"left", 85,
-			"move", 14+2.5,
+			"move", 10+2.5,
 			"arcright", 9, 85,
-			"move", 30+5,
+			"move", 22+4,
 			"arcright", 9, 85,
-			"move", 14+2.5,
+			"move", 10+2.5,
 	]);
 	linear_extrude(h) polygon(path);
 
