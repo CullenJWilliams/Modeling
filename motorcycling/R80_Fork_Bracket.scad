@@ -29,7 +29,7 @@ difference()
 	translate([-fork_spacing/2,0,0]) fork_clamp();
 	fender_holes(fender_bolt_spacing_x,fender_bolt_spacing_y);
 
-	//translate([fork_spacing/3.2,0,-10]) rotate([90,0,0]) scale([3,1,1]) cylinder(80,5,5,anchor=CENTER);
+	translate([0,0,-10]) rotate([90,0,0]) scale([3,1.2,1]) cylinder(80,5,5,anchor=CENTER);
 	//mirror([1,0,0]) translate([fork_spacing/3.2,0,-10]) rotate([90,0,0]) scale([3,1,1]) cylinder(80,5,5,anchor=CENTER);
 }
 

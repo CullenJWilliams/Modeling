@@ -2,10 +2,10 @@ include <BOSL2/std.scad>
 
 $fn=360;
 
-translate([-5,18,50]) 
+translate([-5,18,47.5]) 
 rotate([0,-90,-90])
 linear_extrude(2)
-text("CJW");
+text("BMW");
 
 render()
 difference()
@@ -15,9 +15,9 @@ difference()
 		translate([0,0,10]) rib(5.5);
 		translate([0,0,17.5]) rib(4);
 		translate([0,0,23]) rib(4);
-		translate([0,0,102]) rib(4);
-		translate([0,0,108]) rib(4);
-		translate([0,0,114]) rib(9);
+		translate([0,0,104]) rib(4);
+		translate([0,0,110]) rib(4);
+		translate([0,0,116]) rib(7);
 		center_ribs();
 	}
 	center_post();
