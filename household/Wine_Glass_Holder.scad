@@ -5,15 +5,13 @@ $fn=360;
 rod_diameter = 9.6;
 rod_spacing = 45;
 rod_height = 14;
+base_width = 85;
 
 screw_hole_diameter=4;
 screw_spacing = 110;
 
 width=10;
 thickness=2;
-
-//translate([-52.5,-5,21]) rotate([-90,0,0]) import("weinhalter2.stl");
-
 
 difference()
 {
@@ -43,7 +41,7 @@ module arms(rod_diameter,thickness)
 					{
 						union()
 						{
-							arm_length=20;
+							arm_length=(base_width-rod_spacing)/2;
 							circle(rod_diameter/2+thickness);
 
 							translate([arm_length,0]) circle(rod_diameter/2+thickness);

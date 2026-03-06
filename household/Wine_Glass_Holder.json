@@ -1,0 +1,15 @@
+{
+    "fileFormatVersion": "1",
+    "parameterSets": {
+        "New set 1": {
+            "$fn": "360",
+            "rod_diameter": "9.5999999999999996",
+            "rod_height": "14",
+            "rod_spacing": "45",
+            "screw_hole_diameter": "4",
+            "screw_spacing": "110",
+            "thickness": "2",
+            "width": "10"
+        }
+    }
+}
