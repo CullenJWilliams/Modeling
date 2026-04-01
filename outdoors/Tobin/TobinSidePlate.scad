@@ -47,14 +47,15 @@ module blank(){
 				{
 					cylinder(thickness,13/2,13/2,anchor=FRONT+BOTTOM);
 					translate([-70.2,30.8-14,0]) cylinder(thickness,7,7,anchor=FRONT+BOTTOM);
-					translate([-length+(.3*inch)+.55-1,25/2-.7,0]) rotate([0,0,7])scale([4,1,1]) cylinder(thickness,25/2,25/2,anchor=LEFT+BOTTOM);
+					translate([-length+(.3*inch)+.55-1.1,25/2-.7+.3,0]) rotate([0,0,8]) scale([3.5,1,1]) cylinder(thickness,24/2,24/2,anchor=LEFT+BOTTOM);
+					//translate([-length+(.3*inch)+.55-1,25/2-.7,0]) rotate([0,0,7])scale([4,1,1]) cylinder(thickness,25/2,25/2,anchor=LEFT+BOTTOM);
 					translate([-length+(.3*inch)-1,(25/2)-2,0]) scale([1,1,1]) cylinder(thickness,7,7,anchor=LEFT+BOTTOM);
 					translate([-length+(.3*inch)+1.3-1,25/2-5.3,0]) rotate([0,0,0])scale([4,1,1]) cylinder(thickness,7,7,anchor=LEFT+BOTTOM);
 				}
 			color("coral")
 			{
-				#translate([2,13,0]) cuboid([45.8+2,50,thickness],anchor=RIGHT+BOTTOM+FRONT);
-				#translate([-45.8,13,0]) cylinder(thickness,11/16*inch,11/16*inch,anchor=FRONT+BOTTOM);
+				translate([2,13,0]) cuboid([45.8+2,50,thickness],anchor=RIGHT+BOTTOM+FRONT);
+				translate([-44.5,13,0]) cylinder(thickness,12/16*inch,12/16*inch,anchor=FRONT+BOTTOM);
 				translate([-68.6,37.8-12.6,0])
 					top_radius();
 			}
