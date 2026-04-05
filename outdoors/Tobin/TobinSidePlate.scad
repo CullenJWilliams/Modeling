@@ -8,10 +8,10 @@ thickness=1/8*inch;
 length = 131.4;
 front_radius=13/2;
 
-hammer_pin_hole_x = (2.54*inch)-front_radius-(((1/8)*inch)/2)-.2; // if this doesn't work, delete the .5
+hammer_pin_hole_x = (2.54*inch)-front_radius-(((1/8)*inch)/2)-.1; // if this doesn't work, delete the .5
 hammer_pin_hole_y = .153*inch+1/16*inch;
 
-plate_clamping_screw_x = (3.95*inch)-front_radius-((11/64)*inch)/2+(.05*inch)-.1;
+plate_clamping_screw_x = (3.95*inch)-front_radius-((11/64)*inch)/2+(.05*inch)-.1-.25;
 plate_clamping_screw_y =(.6*inch)+((11/64*inch)/2);
 
 sear_pivot_x = (3.667*inch)-front_radius-((.124*inch)/2);
@@ -20,8 +20,23 @@ sear_pivot_y = (.93*inch)-((1/16*inch)/2)-.1;
 sear_stop_x = (4.216*inch)-front_radius-((.084*inch)/2);
 sear_stop_y = (.166*inch)-((.084*inch)/2);
 
-sear_spring_axis_x = (4.8*inch)-front_radius-((1/8*inch)/2);
-sear_spring_axis_y = (.5*inch)-((1/8*inch)/2)+.5;
+sear_spring_axis_x = (4.8*inch)-front_radius-((1/8*inch)/2)-.5;
+sear_spring_axis_y = (.5*inch)-((1/8*inch)/2)+.25;
+
+hammer_pin_hole_xm = 64-(8);
+hammer_pin_hole_ym = 5;
+
+plate_clamping_screw_xm = hammer_pin_hole_xm+36;
+plate_clamping_screw_ym =17;
+
+sear_pivot_xm = hammer_pin_hole_xm+28;
+sear_pivot_ym = 17+5;
+
+sear_stop_xm = hammer_pin_hole_xm+43;
+sear_stop_ym = 3.5;
+
+sear_spring_axis_xm = hammer_pin_hole_xm+57;
+sear_spring_axis_ym = 11.5;
 
 side_plate();
 
@@ -29,11 +44,11 @@ module side_plate()
 {
 	difference(){
 		blank();
-		translate([-hammer_pin_hole_x,hammer_pin_hole_y,0]) cylinder(20,1/16*inch,1/16*inch);
-		translate([-plate_clamping_screw_x,plate_clamping_screw_y,0]) cylinder(20,(11/64*inch)/2,(11/64*inch)/2);
-		translate([-sear_pivot_x,sear_pivot_y,0]) cylinder(20,(1/16*inch),(1/16*inch));
-		translate([-sear_stop_x,sear_stop_y,0]) cylinder(20,(.084*inch)/2,(.084*inch)/2);
-		translate([-sear_spring_axis_x,sear_spring_axis_y,0]) cylinder(20,(1/8*inch)/2,(1/8*inch)/2);
+		translate([-hammer_pin_hole_xm,hammer_pin_hole_ym,0]) cylinder(20,1/16*inch,1/16*inch);
+		translate([-plate_clamping_screw_xm,plate_clamping_screw_ym,0]) cylinder(20,(11/64*inch)/2,(11/64*inch)/2);
+		translate([-sear_pivot_xm,sear_pivot_ym,0]) cylinder(20,(1/16*inch),(1/16*inch));
+		translate([-sear_stop_xm,sear_stop_ym,0]) cylinder(20,(.084*inch)/2,(.084*inch)/2);
+		translate([-sear_spring_axis_xm,sear_spring_axis_ym,0]) cylinder(20,(1/8*inch)/2,(1/8*inch)/2);
 	}
 }
 
@@ -54,7 +69,8 @@ module blank(){
 				}
 			color("coral")
 			{
-				translate([2,13,0]) cuboid([45.8+2,50,thickness],anchor=RIGHT+BOTTOM+FRONT);
+				translate([2,13,0]) cuboid([45+2,50,thickness],anchor=RIGHT+BOTTOM+FRONT);
+				translate([-44.5,13.1,0]) cylinder(thickness,12/16*inch,12/16*inch,anchor=FRONT+BOTTOM);
 				translate([-44.5,13,0]) cylinder(thickness,12/16*inch,12/16*inch,anchor=FRONT+BOTTOM);
 				translate([-68.6,37.8-12.6,0])
 					top_radius();
@@ -67,7 +83,7 @@ module top_radius()
 {
 	difference(){
 		cuboid([20,20,thickness],anchor=LEFT+FRONT+BOTTOM);
-		translate([-1,-6,0]) rotate([0,0,-45]) cuboid([10,10,thickness],anchor=LEFT+FRONT+BOTTOM);
+		translate([-1.5,-5.3,0]) rotate([0,0,-45]) cuboid([10,10,thickness],anchor=LEFT+FRONT+BOTTOM);
 		cylinder(2*thickness,6,6);
 	}
 }
