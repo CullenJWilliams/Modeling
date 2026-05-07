@@ -5,17 +5,20 @@ inch = 25.4;
 
 
 mirror([0,0,1])
-sear();
+	sear();
 
 module sear()
 {
-	difference()
+	render()
 	{
-		sear_profile();
-		pivot_hole();
+		difference()
+		{
+			sear_profile();
+			pivot_hole();
+		}
+		transfer_bar();
+		spring_shelf();
 	}
-	transfer_bar();
-	spring_shelf();
 }
 
 module spring_shelf()

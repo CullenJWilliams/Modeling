@@ -31,15 +31,16 @@ sear_pivot_hole_r = ((7/64*inch)+tolerance)/2;
 sear_stop_hole_r = (((5/64)*inch)+tolerance)/2;
 sear_spring_axis_hole_r = ((7/64*inch)+tolerance)/2;
 
-forLazerCut=false;
+forLazerCut=true;
 quickPrint=false;
 
-if (forLazerCut)
-	linear_extrude(1/5) projection() side_plate();
-else if (quickPrint)
-	linear_extrude(.2) projection() side_plate();
-else
-	side_plate();
+difference()
+{
+	translate([20,-10,.2]) cuboid([160,50,20],anchor=BOTTOM+FRONT+RIGHT);
+	scale([1.01,1.01,1.5]) side_plate();
+	cuboid([10,100,3/8*inch]);
+	translate([-80,0,0]) cuboid([40,100,3/8*inch],anchor=RIGHT);
+}
 
 module side_plate()
 {
