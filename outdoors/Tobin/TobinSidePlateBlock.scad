@@ -37,9 +37,9 @@ quickPrint=false;
 difference()
 {
 	translate([20,-10,.2]) cuboid([160,50,20],anchor=BOTTOM+FRONT+RIGHT);
-	scale([1.01,1.01,1.5]) side_plate();
-	cuboid([10,100,3/8*inch]);
-	translate([-80,0,0]) cuboid([40,100,3/8*inch],anchor=RIGHT);
+	scale([1.01,1.01,2]) side_plate();
+	cuboid([10,100,2/4*inch]);
+	translate([-80,0,0]) cuboid([40,100,2/4*inch],anchor=RIGHT);
 }
 
 module side_plate()
