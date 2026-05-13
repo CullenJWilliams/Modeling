@@ -11,16 +11,18 @@ base_r=base_d/2;
 inner_r=inner_d/2;
 flange_center_d=127;
 pin_d=104;
+height=19;
 
 render()
 difference(){
 	union(){
-		translate([0,0,18]) import("emount.stl");
-		cylinder(18,base_r,33.3);
+		translate([0,0,height]) import("emount.stl");
+		cylinder(height-2,base_r,33.3);
 		rotate([0,0,45]) cuboid([flange_center_d+12,19,2] , anchor=BOTTOM,rounding=2,edges=[FRONT+LEFT,BACK+LEFT,FRONT+RIGHT,BACK+RIGHT]);
 		rotate([0,0,-45]) cuboid([flange_center_d+12,19,2], anchor=BOTTOM,rounding=2,edges=[FRONT+LEFT,BACK+LEFT,FRONT+RIGHT,BACK+RIGHT]);
 	}
-	cylinder(18,inner_r,20);
+	cylinder(height,inner_r,19);
+	//cuboid([100,100,100],anchor=FRONT+RIGHT);
 	for(i=[0:90:360])
 	{
 		rotate([0,0,45+i]) translate([flange_center_d/2,0,0]) cylinder(2,9/2,9/2);
