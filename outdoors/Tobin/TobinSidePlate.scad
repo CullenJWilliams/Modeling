@@ -26,18 +26,21 @@ sear_spring_axis_y = 15/32*inch;
 tolerance = (.0078*inch);
 
 hammer_pin_hole_r =(1/8*inch+tolerance)/2;
-plate_clamping_screw_hole_r = 3.4/2;//((11/64*inch)+tolerance)/2;// NOTE: 3.4 is for tapping
+plate_clamping_screw_hole_r = ((11/64*inch)+tolerance)/2;// NOTE: 3.4 is for tapping
 sear_pivot_hole_r = ((7/64*inch)+tolerance)/2;
 sear_stop_hole_r = (((5/64)*inch)+tolerance)/2;
 sear_spring_axis_hole_r = ((7/64*inch)+tolerance)/2;
 
 forLazerCut=false;
 quickPrint=false;
+template=true;
 
 if (forLazerCut)
 	linear_extrude(1/5) projection() side_plate();
 else if (quickPrint)
 	linear_extrude(.2) projection() side_plate();
+else if (template)
+	linear_extrude(10) projection() side_plate();
 else
 	side_plate();
 

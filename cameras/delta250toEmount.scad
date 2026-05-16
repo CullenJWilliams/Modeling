@@ -11,7 +11,7 @@ base_r=base_d/2;
 inner_r=inner_d/2;
 flange_center_d=127;
 pin_d=104;
-height=19;
+height=21;
 
 render()
 difference(){
