@@ -5,28 +5,65 @@ include <./tapers.scad>
 $fn=360;
 
 length=140;
-height=59.5;
-width=67.6;
+
+// Large variant
+// height=59.5;
+// width=67.6;
+// handle_width=50;
+
+width=54;
+height=37.2;
+handle_width=38.4;
+
 thickness=1.3;
 
 otw = 39.5;
 
-box(length,width,height,thickness);
-translate([(width-otw)/2,length-thickness,height]) overTravelStop(otw,3.5,thickness);
-translate([(width/2)-(50/2),0,height/2]) handle_2(9, 50, 10, thickness);
-//rails();
+render(){
+	box(length,width,height,thickness);
+	translate([(width-otw)/2,length-thickness,height]) overTravelStop(otw,3.5,thickness);
+	translate([(width/2)-(handle_width/2),0,height/2]) handle_2(9, handle_width, 10, thickness);
+	rails(width,thickness);
+}
+
+module rails(width,thickness)
+{
+	translate([thickness,50,thickness]) rail();
+	translate([thickness,73,thickness]) rail();
+	translate([thickness,95,thickness]) rail();
+	translate([width,0,0])
+		mirror([1,0,0])
+		{
+			translate([thickness,50,thickness]) rail();
+			translate([thickness,73,thickness]) rail();
+			translate([thickness,95,thickness]) rail();
+		}
+}
+module rail()
+{
+	length=30;
+	base_width=6;
+	top_width=2.2;
+	height=2;
+
+	difference(){
+		rotate([90,0,90])
+			prismoid(size1=[base_width,length],size2=[top_width,length],h=height,
+					anchor=FRONT+BOTTOM+LEFT
+					);
+		translate([0,base_width/2,0]) cuboid([height,2.2,length+2],anchor=BOTTOM+LEFT,rounding=-7,edges=[TOP+FRONT,TOP+BACK]);
+	}
+}
 
 module box(length,width,height,thickness)
 {
 	translate([width/2,length/2,0])
 		rotate([0,0,90])
-		render()
 		difference()
 		{
 			cuboid([length,width,height],anchor=BOTTOM,rounding=2,edges=[FRONT+LEFT,FRONT+RIGHT,BACK+LEFT,BACK+RIGHT,BOTTOM]);
 			translate([0,0,thickness]) cuboid([length-(2*thickness),width-(2*thickness),height-thickness],anchor=BOTTOM,rounding=2,edges=[FRONT+LEFT,FRONT+RIGHT,BACK+LEFT,BACK+RIGHT,BOTTOM]);
 		}
-
 }
 
 module overTravelStop(length,height,thickness)
@@ -50,12 +87,12 @@ module handle_2(length, width,height,thickness){
 		cuboid([width,length,height],anchor=BACK+LEFT,rounding=2,edges=[FRONT+LEFT,FRONT+RIGHT]);
 
 		translate([thickness,thickness,0]) handle_2_inner(length,width, height, thickness);
-		translate([19+6,-7.5,53]) rotate([90,0,0]) color("teal") cylinder(2,50,50);
-		mirror([0,0,1])translate([19+6,-7.5,53]) rotate([90,0,0]) color("teal") cylinder(2,50,50);
+		translate([width/2,-7.5,53]) rotate([90,0,0]) color("teal") cylinder(2,50,50);
+		mirror([0,0,1])translate([width/2,-7.5,53]) rotate([90,0,0]) color("teal") cylinder(2,50,50);
 	}
 	translate([thickness,thickness,0]) linear_extrude(thickness) projection([0,0,1]) handle_2_inner(length,width,height, thickness);
 }
 
 module handle_2_inner(length, width, height,thickness){
-		cuboid([width-(2*thickness),length,height+1],anchor=BACK+LEFT,rounding=1.5,edges=[FRONT+LEFT,FRONT+RIGHT]);
+	cuboid([width-(2*thickness),length,height+1],anchor=BACK+LEFT,rounding=1.5,edges=[FRONT+LEFT,FRONT+RIGHT]);
 }
